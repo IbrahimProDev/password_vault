@@ -45,12 +45,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     setState(() => _isBackingUp = true);
 
     try {
-      // Create backup file
       final file = await BackupService.createBackupFile(widget.masterPassword);
 
       if (!mounted) return;
 
-      // Share via any app
       final result = await Share.shareXFiles(
         [XFile(file.path)],
         subject:
